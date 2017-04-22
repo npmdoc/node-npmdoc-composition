@@ -56,9 +56,27 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.composition.composition">
+            function <span class="apidocSignatureSpan"></span>composition
+            <span class="apidocSignatureSpan">(middleware)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.element.composition.Wrap">
             function <span class="apidocSignatureSpan">composition.</span>Wrap
             <span class="apidocSignatureSpan">(fn, ctx, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.composition.index">
+            function <span class="apidocSignatureSpan">composition.</span>index
+            <span class="apidocSignatureSpan">(middleware)</span>
             </a>
 
         </li>
@@ -151,10 +169,52 @@
 
     </ol></li>
 
+    <li class="apidocModuleLi"><a href="#apidoc.module.composition.index">module composition.index</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.composition.index.index">
+            function <span class="apidocSignatureSpan">composition.</span>index
+            <span class="apidocSignatureSpan">(middleware)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.composition.index.Wrap">
+            function <span class="apidocSignatureSpan">composition.index.</span>Wrap
+            <span class="apidocSignatureSpan">(fn, ctx, next)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.composition" id="apidoc.module.composition">module composition</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.composition.composition" id="apidoc.element.composition.composition">
+        function <span class="apidocSignatureSpan"></span>composition
+        <span class="apidocSignatureSpan">(middleware)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function compose(middleware) {
+  return function (next) {
+    next = next || new Wrap(noop);
+    var i = middleware.length;
+    while (i--) next = new Wrap(middleware[i], this, next);
+    return next
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
     <h2>
@@ -173,6 +233,26 @@
   this._value = undefined;
   this._promise = undefined;
   this._generator = undefined;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.composition.index" id="apidoc.element.composition.index">
+        function <span class="apidocSignatureSpan">composition.</span>index
+        <span class="apidocSignatureSpan">(middleware)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function compose(middleware) {
+  return function (next) {
+    next = next || new Wrap(noop);
+    var i = middleware.length;
+    while (i--) next = new Wrap(middleware[i], this, next);
+    return next
+  }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -444,6 +524,53 @@ Wrap.prototype.throw = function (err) {
 * @param {Mixed} obj
 * @return {Boolean}
 ...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.composition.index" id="apidoc.module.composition.index">module composition.index</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.composition.index.index" id="apidoc.element.composition.index.index">
+        function <span class="apidocSignatureSpan">composition.</span>index
+        <span class="apidocSignatureSpan">(middleware)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function compose(middleware) {
+  return function (next) {
+    next = next || new Wrap(noop);
+    var i = middleware.length;
+    while (i--) next = new Wrap(middleware[i], this, next);
+    return next
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.composition.index.Wrap" id="apidoc.element.composition.index.Wrap">
+        function <span class="apidocSignatureSpan">composition.index.</span>Wrap
+        <span class="apidocSignatureSpan">(fn, ctx, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Wrap(fn, ctx, next) {
+  if (typeof fn !== 'function') throw TypeError('Not a function!');
+  this._fn = fn;
+  this._ctx = ctx;
+  this._next = next;
+  this._called = false;
+  this._value = undefined;
+  this._promise = undefined;
+  this._generator = undefined;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
